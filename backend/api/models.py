@@ -58,6 +58,7 @@ class User(AbstractUser):
         blank=True, null=True, verbose_name="Numero de telefono")
     headquarters = models.ForeignKey(
         Headquarters, blank=True, null=True, on_delete=models.DO_NOTHING, verbose_name="Sede")
+    bio = models.TextField(blank=True, null=True, verbose_name="Biografía")
 
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = []
