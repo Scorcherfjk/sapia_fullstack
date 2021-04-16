@@ -4,15 +4,28 @@ from datetime import datetime
 
 class User(object):
 
-    name = 'test'
-    lastname = 'test'
+    name = None
+    lastname = None
+    phone_number = None
     date_of_birth = None
-    bio = ''
+    bio = None
+    id = None
+    email = None
+    password = None
 
-    def __init__(self, id, email, password):
+    def __init__(self, id, name, lastname, phone_number, email, password, date_of_birth):
         self.id = id
-        self.email = email
-        self.password = password
+        self.name = name 
+        self.lastname = lastname 
+        self.phone_number = phone_number 
+        self.date_of_birth = date_of_birth 
+        self.email = email 
+        self.password = password 
+
+    @classmethod    
+    def short(cls, id, email, password):
+        return cls(id, None, None, None, email, password, None)
+
 
     def __str__(self):
         return f"the user is {self.email}"
@@ -24,6 +37,7 @@ class User(object):
             "password": self.password,
             "name": self.name,
             "lastname": self.lastname,
+            "phone_number": self.phone_number,
             "date_of_birth": self.date_of_birth,
             "bio": self.bio,
         }
