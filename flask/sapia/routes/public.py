@@ -1,5 +1,9 @@
-from flask import jsonify
+import json
 import hashlib
+from flask import jsonify, request, Response
+
+from sapia.models.user import User
+
 
 class PublicRoutes():
     def __init__(self, app):
@@ -9,19 +13,25 @@ class PublicRoutes():
 
     def routes(self):
 
-        @self.app.route('/')
-        def index():
-            return jsonify({
-                'hola': "mundo"
-            })
-
         @self.app.route('/create', methods=["POST"])
         def create():
-            obj = {
-                'name': "user1",
-                'password': self.bcrypt.generate_password_hash('abcxyz')
-            }
+            try:
+                data = request.json
 
-            self.db.user.insert_one(obj)
+                user = User(
+                    id = None,
+                    name = data['name'],
+                    lastname = data['lastname'], 
+                    phone_number = data['phone_number'], 
+                    date_of_birth = data['date_of_birth'], 
+                    email = data['email'], 
+                    password = self.bcrypt.generate_password_hash(data['password'])
+                    )
+                obj = user.toDict()
 
-            return jsonify(obj)
+                self.db.user.insert_one(obj)
+
+                return jsonify({"message": "success"})
+            except Exception as e:
+                print(e)
+                return Response(json.dumps({"message": "error"}), status=400, content_type="application/json")
