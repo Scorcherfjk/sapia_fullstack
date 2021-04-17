@@ -3,6 +3,7 @@ from flask import jsonify, Response, request
 from flask_jwt import jwt_required, current_identity
 from bson.objectid import ObjectId
 import json
+from sapia.models.user import User
 
 class ProtectedRoutes():
 
@@ -19,6 +20,14 @@ class ProtectedRoutes():
             return jsonify({
                 'si se pudo': '%s' % current_identity
             })
+
+        @self.app.route('/get_user', methods=["GET"])
+        @jwt_required()
+        def get_user():
+            db_user = self.db.user.find_one({'_id': ObjectId('%s' % current_identity)})
+            user = User.from_query(db_user)
+            print(user.toDict())
+            return jsonify(user.toDict())
 
         @self.app.route('/update/user', methods=["POST"])
         @jwt_required()
@@ -51,6 +60,8 @@ class ProtectedRoutes():
                     "date_of_birth": datetime.strptime(data['date_of_birth'], '%d-%m-%Y'),
                     "bio": data['bio'],
                     "phone_number": data['phone_number'],
+                    "headquarter": data['headquarter'],
+                    "program": data['program'], 
                 }
 
                 self.db.user.update_one({'_id': ObjectId('%s' % current_identity)}, {"$set": obj })
