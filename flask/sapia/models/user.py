@@ -12,23 +12,26 @@ class User(object):
     id = None
     email = None
     password = None
+    headquarter = None
+    program = None
 
-    def __init__(self, id, name, lastname, phone_number, email, password, date_of_birth):
+    def __init__(self, id, name, lastname, phone_number, email, password, date_of_birth, headquarter=None, program=None):
         self.id = id
-        self.name = name 
-        self.lastname = lastname 
-        self.phone_number = phone_number 
-        self.date_of_birth = date_of_birth 
-        self.email = email 
-        self.password = password 
+        self.name = name
+        self.lastname = lastname
+        self.phone_number = phone_number
+        self.date_of_birth = date_of_birth
+        self.email = email
+        self.password = password
+        self.headquarter = headquarter
+        self.program = program
 
-    @classmethod    
+    @classmethod
     def short(cls, id, email, password):
         return cls(id, None, None, None, email, password, None)
 
-
     def __str__(self):
-        return f"the user is {self.email}"
+        return self.id
 
     def toDict(self):
         return {
