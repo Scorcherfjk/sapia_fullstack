@@ -67,7 +67,6 @@ class User(object):
         return {
             "id": self.id,
             "email": self.email,
-            "password": self.password,
             "name": self.name,
             "lastname": self.lastname,
             "phone_number": self.phone_number,
