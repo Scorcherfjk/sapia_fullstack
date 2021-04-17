@@ -15,7 +15,7 @@ class User(object):
     headquarter = None
     program = None
 
-    def __init__(self, id, name, lastname, phone_number, email, password, date_of_birth, headquarter=None, program=None):
+    def __init__(self, id, name, lastname, phone_number, email, password, date_of_birth, headquarter=None, program=None, bio=None):
         self.id = id
         self.name = name
         self.lastname = lastname
@@ -25,6 +25,7 @@ class User(object):
         self.password = password
         self.headquarter = headquarter
         self.program = program
+        self.bio = bio
 
     @classmethod
     def short(cls, id, email, password):
@@ -41,13 +42,14 @@ class User(object):
             str(data['password']),
             data['date_of_birth'],
             data['headquarter'],
-            data['program']
+            data['program'],
+            data['bio'],
         )
 
     def __str__(self):
         return self.id
 
-    def toDict(self):
+    def toDictSave(self):
         return {
             "id": self.id,
             "email": self.email,
@@ -56,6 +58,20 @@ class User(object):
             "lastname": self.lastname,
             "phone_number": self.phone_number,
             "date_of_birth": self.date_of_birth,
+            "bio": self.bio,
+            "headquarter": self.headquarter,
+            "program": self.program
+        }
+    
+    def toDictRespose(self):
+        return {
+            "id": self.id,
+            "email": self.email,
+            "password": self.password,
+            "name": self.name,
+            "lastname": self.lastname,
+            "phone_number": self.phone_number,
+            "date_of_birth": self.date_of_birth.strftime('%Y-%m-%d'),
             "bio": self.bio,
             "headquarter": self.headquarter,
             "program": self.program

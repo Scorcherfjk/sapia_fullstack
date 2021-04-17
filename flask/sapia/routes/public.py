@@ -31,7 +31,7 @@ class PublicRoutes():
                     headquarter=data.get('headquarter', None),
                     program=data.get('program', None),
                 )
-                obj = user.toDict()
+                obj = user.toDictSave()
 
                 self.db.user.insert_one(obj)
 
