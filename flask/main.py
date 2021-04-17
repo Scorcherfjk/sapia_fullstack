@@ -14,7 +14,7 @@ from sapia.routes import public, protected
 from sapia.config.jwt import connect
 
 app = Flask(__name__)
-app.secret_key = urandom(24)
+app.secret_key = 'supersecretkey' #urandom(24)
 
 #CORS
 CORS(app)
@@ -29,6 +29,7 @@ db = mongodb_client.db
 app.config["DB"] = db
 
 # Instance JWT
+app.config["JWT_EXPIRATION_DELTA"] = timedelta(minutes=30)
 jwt = connect(app)
 
 # Routes
