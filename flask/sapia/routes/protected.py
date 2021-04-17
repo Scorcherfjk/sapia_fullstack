@@ -21,13 +21,6 @@ class ProtectedRoutes():
                 'si se pudo': '%s' % current_identity
             })
 
-        @self.app.route('/get_user', methods=["GET"])
-        @jwt_required()
-        def get_user():
-            db_user = self.db.user.find_one({'_id': ObjectId('%s' % current_identity)})
-            user = User.from_query(db_user)
-            return jsonify(user.toDictRespose())
-
         @self.app.route('/update/user', methods=["POST"])
         @jwt_required()
         def update_user():
@@ -66,5 +59,39 @@ class ProtectedRoutes():
                 self.db.user.update_one({'_id': ObjectId('%s' % current_identity)}, {"$set": obj })
 
                 return jsonify({"message": "success"})
+            except Exception as e:
+                return Response(json.dumps({"message": str(e)}), status=400, content_type="application/json")
+
+        @self.app.route('/get/user', methods=["GET"])
+        @jwt_required()
+        def get_user():
+            db_user = self.db.user.find_one({'_id': ObjectId('%s' % current_identity)})
+            user = User.from_query(db_user)
+            return jsonify(user.toDictRespose())
+
+        @self.app.route('/get/detail/<id>', methods=["GET"])
+        @jwt_required()
+        def get_detail(id):
+            try:
+   
+                db_user = self.db.user.find_one({ "_id": ObjectId(id) })
+                user = User.from_query(db_user)
+
+                return jsonify(user.toDictRespose())
+            except Exception as e:
+                return Response(json.dumps({"message": str(e)}), status=400, content_type="application/json")
+
+        @self.app.route('/get/all', methods=["GET"])
+        @jwt_required()
+        def get_all_users():
+            try:
+                user_list = []
+                db_users = self.db.user.find({})
+
+                for db_user in db_users:
+                    user = User.from_query(db_user)
+                    user_list.append(user.toDictRespose()) 
+
+                return jsonify(user_list)
             except Exception as e:
                 return Response(json.dumps({"message": str(e)}), status=400, content_type="application/json")
