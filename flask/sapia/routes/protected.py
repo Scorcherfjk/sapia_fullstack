@@ -26,8 +26,7 @@ class ProtectedRoutes():
         def get_user():
             db_user = self.db.user.find_one({'_id': ObjectId('%s' % current_identity)})
             user = User.from_query(db_user)
-            print(user.toDict())
-            return jsonify(user.toDict())
+            return jsonify(user.toDictRespose())
 
         @self.app.route('/update/user', methods=["POST"])
         @jwt_required()
@@ -57,7 +56,7 @@ class ProtectedRoutes():
                 data = request.json
 
                 obj = {
-                    "date_of_birth": datetime.strptime(data['date_of_birth'], '%d-%m-%Y'),
+                    "date_of_birth": datetime.strptime(data['date_of_birth'], '%Y-%m-%d'),
                     "bio": data['bio'],
                     "phone_number": data['phone_number'],
                     "headquarter": data['headquarter'],
