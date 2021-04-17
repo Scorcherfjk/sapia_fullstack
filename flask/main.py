@@ -4,6 +4,7 @@ from os import urandom
 
 # Flask
 from flask import Flask
+from flask_cors import CORS
 from flask_pymongo import PyMongo
 from flask_bcrypt import Bcrypt
 from flask_jwt import JWT, jwt_required, current_identity
@@ -14,6 +15,9 @@ from sapia.config.jwt import connect
 
 app = Flask(__name__)
 app.secret_key = urandom(24)
+
+#CORS
+CORS(app)
 
 # Bcrypt
 bcrypt = Bcrypt(app)
