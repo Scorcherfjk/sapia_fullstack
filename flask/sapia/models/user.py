@@ -30,6 +30,20 @@ class User(object):
     def short(cls, id, email, password):
         return cls(id, None, None, None, email, password, None)
 
+    @classmethod
+    def from_query(cls, data):
+        return cls(
+            str(data['_id']),
+            data['name'],
+            data['lastname'],
+            data['phone_number'],
+            data['email'],
+            str(data['password']),
+            data['date_of_birth'],
+            data['headquarter'],
+            data['program']
+        )
+
     def __str__(self):
         return self.id
 
@@ -43,4 +57,6 @@ class User(object):
             "phone_number": self.phone_number,
             "date_of_birth": self.date_of_birth,
             "bio": self.bio,
+            "headquarter": self.headquarter,
+            "program": self.program
         }
