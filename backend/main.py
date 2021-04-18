@@ -1,6 +1,6 @@
 # Python
 from datetime import timedelta
-from os import urandom
+from os import environ
 
 # Flask
 from flask import Flask
@@ -14,7 +14,7 @@ from sapia.routes import public, protected
 from sapia.config.jwt import connect
 
 app = Flask(__name__)
-app.secret_key = 'supersecretkey' #urandom(24)
+app.secret_key = 'supersecretkey'
 
 #CORS
 CORS(app)
@@ -24,12 +24,13 @@ bcrypt = Bcrypt(app)
 app.config["BCRYPT"] = bcrypt
 
 # Mongo
-mongodb_client = PyMongo(app, uri="mongodb://root:example@localhost:27017/sapia?authSource=admin")
+app.config["MONGO_URI"] = 'mongodb://' + environ['MONGODB_USERNAME'] + ':' + environ['MONGODB_PASSWORD'] + '@' + environ['MONGODB_HOSTNAME'] + ':27017/' + environ['MONGODB_DATABASE']
+mongodb_client = PyMongo(app)
 db = mongodb_client.db
 app.config["DB"] = db
 
 # Instance JWT
-app.config["JWT_EXPIRATION_DELTA"] = timedelta(minutes=30)
+app.config["JWT_EXPIRATION_DELTA"] = timedelta(hours=1)
 jwt = connect(app)
 
 # Routes
