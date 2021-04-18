@@ -1,5 +1,4 @@
 import json
-import hashlib
 from datetime import datetime
 from flask import jsonify, request, Response
 
@@ -35,6 +34,6 @@ class PublicRoutes():
 
                 self.db.user.insert_one(obj)
 
-                return jsonify({"message": "success"})
+                return jsonify({"message": "success"}), 201
             except Exception as e:
                 return Response(json.dumps({"message": str(e)}), status=400, content_type="application/json")
