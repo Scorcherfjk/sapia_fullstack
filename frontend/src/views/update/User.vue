@@ -5,7 +5,6 @@
       <div class="content">
         <h1 class="title">Actualiza tu datos</h1>
         <form class="form" @submit.prevent="update_user">
-          <p class="loading" v-show="loading">cargando...</p>
           <div class="form-control">
             <label class="label" for="name">Nombre</label>
             <input
@@ -108,7 +107,7 @@ export default {
       this.loading = true;
       try {
         const { data } = await axios.get(
-          "http://127.0.0.1:5000/get/user",
+          "http://34.69.197.248/get/user",
           this.headers
         );
 
@@ -135,7 +134,7 @@ export default {
         if (this.password !== "") userData.password = this.password;
 
         const { data } = await axios.post(
-          "http://127.0.0.1:5000/update/user",
+          "http://34.69.197.248/update/user",
           userData,
           this.headers
         );

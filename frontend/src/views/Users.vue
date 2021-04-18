@@ -61,7 +61,7 @@ export default {
       this.loading = true;
       try {
         const { data } = await axios.get(
-          "http://127.0.0.1:5000/get/all",
+          "http://34.69.197.248/get/all",
           this.headers
         );
         console.log(data);

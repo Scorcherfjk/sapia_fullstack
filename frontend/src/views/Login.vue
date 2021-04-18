@@ -69,7 +69,7 @@ export default {
     async send() {
       this.loading = true;
       try {
-        const { data } = await axios.post("http://127.0.0.1:5000/auth", {
+        const { data } = await axios.post("http://34.69.197.248/auth", {
           username: this.email,
           password: this.password,
         });

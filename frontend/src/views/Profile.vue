@@ -148,7 +148,7 @@ export default {
       this.loading = true;
       try {
         const { data } = await axios.get(
-          "http://127.0.0.1:5000/get/user",
+          "http://34.69.197.248/get/user",
           this.headers
         );
 
@@ -183,7 +183,7 @@ export default {
         };
 
         const { data } = await axios.post(
-          "http://127.0.0.1:5000/update/profile",
+          "http://34.69.197.248/update/profile",
           userData,
           this.headers
         );
