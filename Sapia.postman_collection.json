@@ -1,0 +1,215 @@
+{
+	"info": {
+		"_postman_id": "b151bbdd-6100-4838-9176-39d0e7fcf2c5",
+		"name": "Sapia",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "auth",
+			"item": [
+				{
+					"name": "get token",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"username\": \"test@test.pe\",\n    \"password\": \"hola1234\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://34.69.197.248/auth",
+							"protocol": "http",
+							"host": [
+								"34",
+								"69",
+								"197",
+								"248"
+							],
+							"path": [
+								"auth"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "public",
+			"item": [
+				{
+					"name": "create",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"name\",\n    \"lastname\": \"lastname\",\n    \"phone_number\": 938576857,\n    \"date_of_birth\": \"2020-03-03\",\n    \"email\": \"test@test.pe\",\n    \"password\": \"hola1234\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://34.69.197.248/create",
+							"protocol": "http",
+							"host": [
+								"34",
+								"69",
+								"197",
+								"248"
+							],
+							"path": [
+								"create"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "protected",
+			"item": [
+				{
+					"name": "update profile",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "JWT eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE2MTg2MTI0MjQsImlhdCI6MTYxODYxMjEyNCwibmJmIjoxNjE4NjEyMTI0LCJpZGVudGl0eSI6IjYwN2EwNGFkNmJhNGQ4NjlhMTZmZDRmNiJ9.-E8J-vwPYZyA7kPLBuyeSrGhka6Qh_Rxl2MXBJZJZlc",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"phone_number\": 999999999,\n    \"date_of_birth\": \"2020-03-03\",\n    \"headquarter\": \"nueva sede\",\n    \"program\": \"nuevo programa\",\n    \"bio\": \"nueva bio\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:5000/update/profile",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"update",
+								"profile"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update user",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "JWT eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE2MTg2MTI0MjQsImlhdCI6MTYxODYxMjEyNCwibmJmIjoxNjE4NjEyMTI0LCJpZGVudGl0eSI6IjYwN2EwNGFkNmJhNGQ4NjlhMTZmZDRmNiJ9.-E8J-vwPYZyA7kPLBuyeSrGhka6Qh_Rxl2MXBJZJZlc",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"nuevo nombre\",\n    \"lastname\": \"nuevo apellido\",\n    \"password\": \"nueva contrasena\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:5000/update/user",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"update",
+								"user"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get user authenticated",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "JWT eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE2MTg2MjUzMjgsImlhdCI6MTYxODYyMzUyOCwibmJmIjoxNjE4NjIzNTI4LCJpZGVudGl0eSI6IjYwN2EzOGU1NmJhNGQ4OGJiODM4YjcyZCJ9.f1Rfhcq1mZf9YCfody7zRgfpfEyRKMoAvFonj0GNr20",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "localhost:5000/get_user",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"get_user"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get unique user",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:5000/get/detail/607a38e56ba4d88bb838b72d",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"get",
+								"detail",
+								"607a38e56ba4d88bb838b72d"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get all users",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:5000/get/all",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"get",
+								"all"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
