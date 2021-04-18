@@ -1,18 +1,18 @@
 <template>
   <div class="bottombar">
-    <router-link class="link" to="users">
+    <router-link class="link" to="/users">
       <i class="icon material-icons">home</i>
       <p>Inicio</p></router-link
     >
-    <router-link class="link" to="message"
+    <router-link class="link" to="/message"
       ><i class="icon material-icons">message</i>
       <p>Mensajes</p></router-link
     >
-    <router-link class="link" to="profile"
+    <router-link class="link" to="/profile"
       ><i class="icon material-icons">perm_identity</i>
       <p>Cuenta</p></router-link
     >
-    <router-link class="link" to="login"
+    <router-link class="link" to="/login"
       ><i class="icon material-icons">logout</i>
       <p>Salir</p></router-link
     >

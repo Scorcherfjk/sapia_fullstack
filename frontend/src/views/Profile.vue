@@ -223,7 +223,7 @@ export default {
 }
 
 .card {
-  @apply flex justify-between items-center p-4 w-full border-2 rounded-xl;
+  @apply flex flex-col sm:flex-row justify-between items-center p-4 w-full border-2 rounded-xl;
 }
 
 .card-detail {

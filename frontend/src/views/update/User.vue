@@ -3,7 +3,7 @@
     <div class="container">
       <sidebar />
       <div class="content">
-        <h1 class="title">Actualiza tu datos</h1>
+        <h1 class="title">Actualiza tus datos</h1>
         <form class="form" @submit.prevent="update_user">
           <div class="form-control">
             <label class="label" for="name">Nombre</label>
